@@ -1,7 +1,10 @@
-import React from 'react';
+import { NavLink } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 
 const NavBar = () => {
+    const linkClass = ({isActive}: { isActive: boolean }) => isActive ? 
+    'text-white border-b-4 hover:opacity-80 border-black font-bold hover:border-b-4 hover:text-white   px-3 py-2'
+    : 'text-white hover:opacity-80 font-bold hover:border-b-4 hover:text-white   px-3 py-2';
     return (
         <>
             <nav className="bg-indigo-700 border-b border-indigo-500">
@@ -17,26 +20,22 @@ const NavBar = () => {
                                     alt="React Jobs"
                                 />
                                 <span className="hidden md:block text-white text-2xl font-bold ml-2"
-                                >React Jobs</span
-                                >
+                                >React Jobs</span>
                             </a>
                             <div className="md:ml-auto">
                                 <div className="flex space-x-2">
-                                    <a
-                                        href="/index.html"
-                                        className="text-white border-b-4 hover:opacity-80 border-black font-bold hover:border-b-4 hover:text-white   px-3 py-2"
-                                    >Home</a
-                                    >
-                                    <a
-                                        href="/jobs.html"
-                                        className="text-white border-black hover:opacity-80 font-bold hover:border-b-4 hover:text-white   px-3 py-2"
-                                    >Jobs</a
-                                    >
-                                    <a
-                                        href="/add-job.html"
-                                        className="text-white border-black hover:opacity-80 font-bold hover:border-b-4 hover:text-white   px-3 py-2"
-                                    >Add Job</a
-                                    >
+                                    <NavLink
+                                        to={`/`}
+                                        className={linkClass}
+                                    >Home</NavLink>
+                                    <NavLink
+                                        to={`jobs`}
+                                        className={linkClass}                                    
+                                    >Jobs</NavLink>
+                                    <NavLink
+                                        to={`add-jobs`}
+                                        className={linkClass}                                  
+                                    >Add Job</NavLink>
                                 </div>
                             </div>
                         </div>

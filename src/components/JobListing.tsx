@@ -1,11 +1,8 @@
 import React, {useState} from 'react'
-import PropTypes from "prop-types";
-import {FaMapMarker} from "react-icons/fa";
-import {j} from "vite/dist/node/types.d-aGj9QkWt.js";
+import { FaMapMarker } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-const JobListing = ({
-                        job
-                    }) => {
+const JobListing = ({job} : {job: any}) => {
     let description = job.description.substring(0,90) + '...';
     let [showAllDescription, setShowAllDescription] =
         useState(false);
@@ -20,10 +17,10 @@ const JobListing = ({
                 <div className="mb-5">
                     {showAllDescription? job.description : description}
                 </div>
-                <buttom className="mb-5 text-indigo-400 hover:text-indigo-600 cursor-pointer"
+                <button className="mb-5 text-indigo-400 hover:text-indigo-600 cursor-pointer"
                 onClick={() => (setShowAllDescription((prevState) => (!prevState)))}>
                     {showAllDescription ? 'Less' : 'More'}
-                </buttom>
+                </button>
                 <h3 className="text-indigo-500 mb-2"> {job.salary} / Year</h3>
 
                 <div className="border border-gray-100 mb-5"></div>
@@ -33,26 +30,15 @@ const JobListing = ({
                         <FaMapMarker className="inline text-lg mx-1"/>
                         {job.location}
                     </div>
-                    <a
-                        href={`/jobs/${job.id}`}
+                    <Link
+                        to={`/jobs/${job.id}`}
                         className="h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm"
                     >
                         Read More
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
     )
 }
 export default JobListing
-
-// JobListing.prototype = {
-//     job: PropTypes.shape({
-//         id: PropTypes.number,
-//         title: PropTypes.string,
-//         type: PropTypes.string,
-//         salary: PropTypes.string,
-//         location: PropTypes.string,
-//         description: PropTypes.string
-//     })
-// }
