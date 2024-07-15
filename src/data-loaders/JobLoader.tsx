@@ -6,4 +6,4 @@ const jobLoader = async({params}:{params:any}) =>{
     return data;
 }
 
-export default jobLoader;
+export default jobLoader;   
