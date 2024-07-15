@@ -1,8 +1,17 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const JobPage = () => {
+const JobPage = ({deleteJobSubmit}:{deleteJobSubmit:Function}) => {
     const job:any = useLoaderData();
+    const navigate = useNavigate();
+    const handleDeleteJob = () => {
+        deleteJobSubmit(job.id);
+        toast.success('Job deleted successfully!')
+        return navigate('/jobs');
+    }
+
     return <>
         <section>
       <div className="container m-auto py-6 px-6">
@@ -80,6 +89,7 @@ const JobPage = () => {
                 >Edit Job</a>
               <button
                 className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+                onClick={handleDeleteJob}
               >
                 Delete Job
               </button>
